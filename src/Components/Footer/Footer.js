@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import './Footer.css'
 export default function Footer() {
   return (
-    <div style={{marginBottom:"-30px",marginLeft:"200px"}}>
+    <div style={{marginBottom:"-30px"}}>
     <div className="row offer-footer width901 pb-3">
       <div className="col-2 offer-footer-links"  >
         <div className="link">

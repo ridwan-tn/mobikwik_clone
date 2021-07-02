@@ -25,11 +25,13 @@ export const useStyles = makeStyles(theme => ({
   },
  
   imageColumn: {
+    width: 1100,
+
     [theme.breakpoints.down("md")]: {
       width: 380,
       height: 120,
       marginTop: "2em",
-      marginLeft: "-1em",
+      marginLeft: "0em",
     },
   },
 
