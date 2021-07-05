@@ -7,7 +7,7 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-
+import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Footer from "../../Components/Footer/Footer";
 import mutualfund247 from '../../assets/mutualfund247.png'
@@ -196,7 +196,7 @@ export default function Payback() {
   <Grid item container spacing={2}>
       <Grid  item md={5} style={{textAlign:"left"}}>
       <Typography style={{fontSize:"10px",paddingBottom:"15px"}}> Payback CardNumber</Typography>
-       <TextField id="outlined-basic" label=" Payback CardNumber"placeholder="Payback CardNumber" variant="outlined" style={{width:"100%"}}/>
+       <TextField id="outlined-basic" placeholder="Payback CardNumber" variant="outlined" style={{width:"100%"}} margin="dense"/>
       </Grid>
       
      
@@ -204,11 +204,20 @@ export default function Payback() {
      
       <Grid  item md={5} >
       <Typography style={{fontSize:"10px",color:"white",paddingBottom:"15px"}}> Payback CardNumber</Typography>
-      <TextField id="outlined-basic" label=""placeholder="" variant="outlined" style={{width:"100%"}}/>
+      <TextField id="outlined-basic" label=""placeholder="" variant="outlined" style={{width:"100%"}} margin="dense"/>
       </Grid>
       <Grid item md={2} >
       <Typography style={{fontSize:"10px",color:"white",paddingBottom:"15px"}}> Payback CardNumber</Typography>
-      <button className={classes.button1} >Redeem</button>
+      <Button
+        variant="contained"
+      
+        color="rgb(149,149,149)"
+        className={classes.button}
+         style={{width:"75px",height:'44px',color:"white"}}
+      >
+        
+        Go
+      </Button>
        
      
       

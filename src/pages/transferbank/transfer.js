@@ -3,7 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 
 import PropTypes from 'prop-types';
 
-
+import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
@@ -264,26 +264,35 @@ export default function Transfer() {
     <Grid item md={3}>
       <Typography className={classes.textcaption}>Beneficiary Name</Typography>
     
-      <TextField id="outlined-basic"  placeholder="Name On Bank Account" variant="outlined" style={{width:"100%"}}/>
+      <TextField id="outlined-basic"  placeholder="Name On Bank Account" variant="outlined" style={{width:"100%"}} margin="dense"/>
       </Grid>
       <Grid item md={2}>
       <Typography className={classes.textcaption}>Account Number</Typography>
       
-      <TextField id="outlined-basic" placeholder="Account Number" variant="outlined" style={{width:"100%"}}/> 
+      <TextField id="outlined-basic" placeholder="Account Number" variant="outlined" style={{width:"100%"}} margin="dense"/> 
       </Grid>
       <Grid item  md={2}>
       <Typography className={classes.textcaption}>IFSC Code</Typography>
-      <TextField id="outlined-basic" label=" ₹    IFSC"placeholder="  ₹  IFSC" variant="outlined"  style={{width:"100%"}}/>
+      <TextField id="outlined-basic" placeholder="  ₹  IFSC" variant="outlined"  style={{width:"100%"}} margin="dense"/>
       </Grid>
       <Grid item md={3}>
          <Typography className={classes.textcaption}> Amount</Typography>
-          <TextField id="outlined-basic" label=" ₹    Amount"placeholder="  ₹  Amount" variant="outlined"  style={{width:"100%"}}/> 
+          <TextField id="outlined-basic" placeholder="  ₹  Amount" variant="outlined"  style={{width:"100%"}} margin="dense"/> 
       </Grid>
       <Grid item md={1}>
      
-      <Typography className={classes.caption10}> Amount</Typography>
+      <Typography className={classes.caption10}> </Typography>
       <br/>
-      <button className={classes.button1}>Go</button>
+      
+      <Button
+        variant="contained"
+      
+        color="rgb(149,149,149)"
+        className={classes.button}
+         style={{width:"75px",height:'44px',color:"white",marginTop:"15px"}}
+      >
+        Go
+      </Button>
       </Grid>
         </Grid>
       
