@@ -1,18 +1,19 @@
-import React from "react";
+import React, { Component, useState } from "react";
 
-import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/core/styles';
+import PropTypes from "prop-types";
+import { makeStyles } from "@material-ui/core/styles";
 
-import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
+import Grid from "@material-ui/core/Grid";
+import Paper from "@material-ui/core/Paper";
+import Typography from "@material-ui/core/Typography";
+import Box from "@material-ui/core/Box";
+import Button from "@material-ui/core/Button";
+import TextField from "@material-ui/core/TextField";
 import Footer from "../../Components/Footer/Footer";
-import mutualfund247 from '../../assets/mutualfund247.png'
-import mutualfund248 from '../../assets/mutualfund248.png'
-import mutualfund249 from '../../assets/mutualfund249.png'
+import mutualfund247 from "../../assets/mutualfund247.png";
+import mutualfund248 from "../../assets/mutualfund248.png";
+import mutualfund249 from "../../assets/mutualfund249.png";
+import Popover from "@material-ui/core/Popover";
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
   return (
@@ -41,301 +42,437 @@ TabPanel.propTypes = {
 function a11yProps(index) {
   return {
     id: `simple-tab-${index}`,
-    'aria-controls': `simple-tabpanel-${index}`,
+    "aria-controls": `simple-tabpanel-${index}`,
   };
 }
 
 const useStyles = makeStyles((theme) => ({
   content: {
+    backgroundColor: "white",
     display: "block",
-    marginLeft: "17em",
-    marginTop: "-2em",
+    marginLeft: "20em",
+    marginTop: "2em",
+    marginRight: "10em",
     [theme.breakpoints.down("xs")]: {
-      marginLeft: "1em",
-      marginRight:"1em",
+      marginLeft: "2px",
+      marginRight: "2px",
+      marginTop: "1px",
     },
   },
   root: {
     flexGrow: 1,
     backgroundColor: "#002447",
-    color:"white",
+    color: "white",
   },
-  tabContainer:{
-    textAlign:"center",
-   alignItems:"center",
-    justifyContent :"center",
-},
-root: {
-  margin: 0,
-  padding: theme.spacing(2),
-},
-button1:{
-  width:"100px",
-  height:"50px",
-  fontSize:"20px",
-  color:'white',
-  borderRadius:"10px",
-  backgroundColor:"rgb(178,178,178)",
-  [theme.breakpoints.down("md")]:{
-    width:"100px",
-    height:"30px",
-    fontSize:"15px",
-    borderRadius:"5px",
+  tabContainer: {
+    textAlign: "center",
+    alignItems: "center",
+    justifyContent: "center",
   },
-  [theme.breakpoints.down("sm")]:{
-    width:"100px",
-    height:"35px",
-    fontSize:"15px",
-    borderRadius:"5px",
+  root: {
+    margin: 0,
+    padding: theme.spacing(2),
   },
-  [theme.breakpoints.down("xs")]:{
-    width:"100%",
-    height:"35px",
-    fontSize:"15px",
-    borderRadius:"5px",
-  }
+  button1: {
+    width: "100px",
+    height: "50px",
+    fontSize: "20px",
+    color: "white",
+    borderRadius: "10px",
+    backgroundColor: "rgb(178,178,178)",
+    [theme.breakpoints.down("md")]: {
+      width: "100px",
+      height: "30px",
+      fontSize: "15px",
+      borderRadius: "5px",
+    },
+    [theme.breakpoints.down("sm")]: {
+      width: "100px",
+      height: "35px",
+      fontSize: "15px",
+      borderRadius: "5px",
+    },
+    [theme.breakpoints.down("xs")]: {
+      width: "100%",
+      height: "35px",
+      fontSize: "15px",
+      borderRadius: "5px",
+    },
   },
-closeButton: {
-  position: 'absolute',
-  right: theme.spacing(1),
-  top: theme.spacing(1),
-  color: theme.palette.grey[500],
-},
+  closeButton: {
+    position: "absolute",
+    right: theme.spacing(1),
+    top: theme.spacing(1),
+    color: theme.palette.grey[500],
+  },
 
-paper:{   
-  paddingTop:'30px',
-  paddingLeft:"25px",
-  paddingBottom:"15px",
-  paddingRight:"30px",
-   
-    width:'100%',
-    height:'',
-    textAlign:"center",
-   
-    backgroundColor:"#002447",
-    borderRadius:"4px"
+  paper: {
+    paddingTop: "30px",
+    paddingLeft: "25px",
+    paddingBottom: "15px",
+    paddingRight: "30px",
 
-},
+    width: "100%",
+    height: "",
+    textAlign: "center",
 
-paperContainer:{
-   backgroundColor:"#002447",
-   textAlign:"center",
-  alignItems:"center",
-   justifyContent :"center",
-},
-tabs:{
-  borderRadius:"4px",
-  backgroundColor:"#002447",
-  color:"white",
-  indicator:{
-    color:"white"
+    backgroundColor: "#002447",
+    borderRadius: "4px",
   },
-},
-paper1:{
-paddingRight:"20px",
-paddingLeft:"20px",
-paddingTop:'20px',
-paddingBottom:"20px",
-},
-tabpanel1:{
-  margin:"2px",
-  backgroundColor:"white",
-  color:"black",
-  alignItems:"center",
-  justifyContent :"center",
-  borderRadius:"4px",
-  width:"100%",
-  height:"150px"
 
-},
-H1:{
-  color:"white",
-  fontSize:25,
-  [theme.breakpoints.down("md")]:{
-    color:"white",
-    fontSize:25,
+  paperContainer: {
+    backgroundColor: "#002447",
+    textAlign: "center",
+    alignItems: "center",
+    justifyContent: "center",
   },
-  [theme.breakpoints.down("sm")]:{
-    color:"white",
-    fontSize:20,
+  tabs: {
+    borderRadius: "4px",
+    backgroundColor: "#002447",
+    color: "white",
+    indicator: {
+      color: "white",
+    },
   },
-  [theme.breakpoints.down("xs")]:{
-    color:"white",
-    fontSize:20,
+  paper1: {
+    paddingRight: "20px",
+    paddingLeft: "20px",
+    paddingTop: "20px",
+    paddingBottom: "20px",
   },
-},
+  tabpanel1: {
+    margin: "2px",
+    backgroundColor: "white",
+    color: "black",
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: "4px",
+    width: "100%",
+    height: "150px",
+  },
+  H1: {
+    color: "white",
+    fontSize: 25,
+    [theme.breakpoints.down("md")]: {
+      color: "white",
+      fontSize: 25,
+    },
+    [theme.breakpoints.down("sm")]: {
+      color: "white",
+      fontSize: 20,
+    },
+    [theme.breakpoints.down("xs")]: {
+      color: "white",
+      fontSize: 20,
+    },
+  },
+  button100: {
+    width: "100%",
+    [theme.breakpoints.down("sm")]: {
+      width: "200px",
+    },
+  },
+  popper100: {
+    marginLeft: "500px",
+    marginTop: "240px",
 
+    [theme.breakpoints.down("sm")]: {
+      display: "none",
+    },
+  },
 }));
 export default function Payback() {
-  const [open, setOpen] = React.useState(false);
-  
-  
-  
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const handleClick = (event) => {
+    setAnchorEl(event);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const open = Boolean(anchorEl);
+  const id = open ? "simple-popover" : undefined;
+  const [open5, setOpen1] = useState(false);
+
+  const handleClickOpen = () => {
+    setOpen1(true);
+  };
+
+  const handleClose1 = () => {
+    setOpen1(false);
+  };
+
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
-  
 
   return (
-    <div className={classes.content}>
-      <Grid item container>
-                   <Paper  className={classes.paper}>
-                     <Grid item container>
-                       <Grid item md={6}  style={{textAlign:"left"}}>
-                         <Typography className={classes.H1}>The best reward for loyalty? Money.</Typography>
-                       </Grid>
-                       
-  <Grid item container>
-  <Grid item md={4} >
-      <Typography varient="body" style={{color:"white",margin:"1em"}}>
-      Redeem your Payback Points at MobiKwik!
-          </Typography>
-      </Grid>
-  </Grid>
-  <Grid item container spacing={2}>
-  <Paper  className={classes.paper1} style={{background:"white",height:"",width:"100%",margin:"2px"}}>
-  <Grid item container spacing={2}>
-      <Grid  item md={5} style={{textAlign:"left"}}>
-      <Typography style={{fontSize:"10px",paddingBottom:"15px"}}> Payback CardNumber</Typography>
-       <TextField id="outlined-basic" placeholder="Payback CardNumber" variant="outlined" style={{width:"100%"}} margin="dense"/>
-      </Grid>
-      
-     
-      
-     
-      <Grid  item md={5} >
-      <Typography style={{fontSize:"10px",color:"white",paddingBottom:"15px"}}> Payback CardNumber</Typography>
-      <TextField id="outlined-basic" label=""placeholder="" variant="outlined" style={{width:"100%"}} margin="dense"/>
-      </Grid>
-      <Grid item md={2} >
-      <Typography style={{fontSize:"10px",color:"white",paddingBottom:"15px"}}> Payback CardNumber</Typography>
-      <Button
-        variant="contained"
-      
-        color="rgb(149,149,149)"
-        className={classes.button}
-         style={{width:"75px",height:'44px',color:"white"}}
+    <div>
+      <div
+        className={classes.content}
+        onLoad={(event) => {
+          setOpen1(true);
+        }}
       >
-        
-        Go
-      </Button>
-       
-     
-      
-      </Grid>
-      </Grid>
-      <Grid item container>
-      <Grid item md={4} style={{float:""}}>
-     
-      <Typography style={{fontSize:"10px"}}> Total points available for radeem xxxx</Typography>
-    
-       
-      </Grid>
-      </Grid>
-  </Paper>
-  </Grid>
-  
-    </Grid>
-         </Paper>  
+        <Grid item container style={{ background: "white" }}>
+          <Paper className={classes.paper}>
+            <Grid item container>
+              <Grid item md={6} style={{ textAlign: "left" }}>
+                <Typography className={classes.H1}>
+                  The best reward for loyalty? Money.
+                </Typography>
+              </Grid>
+
+              <Grid item container>
+                <Grid item md={4}>
+                  <Typography
+                    varient="body"
+                    style={{ color: "white", margin: "1em" }}
+                  >
+                    Redeem your Payback Points at MobiKwik!
+                  </Typography>
+                </Grid>
+              </Grid>
+              <Grid item container spacing={2}>
+                <Paper
+                  className={classes.paper1}
+                  style={{
+                    background: "white",
+                    height: "",
+                    width: "100%",
+                    margin: "2px",
+                  }}
+                >
+                  <Grid item container spacing={2} justify="center">
+                    <Grid item md={5} style={{ textAlign: "left" }}>
+                      <Typography
+                        style={{ fontSize: "10px", paddingBottom: "15px" }}
+                      >
+                        {" "}
+                        Payback CardNumber
+                      </Typography>
+                      <TextField
+                        id="outlined-basic"
+                        placeholder="Payback CardNumber"
+                        variant="outlined"
+                        style={{ width: "100%" }}
+                        margin="dense"
+                      />
+                    </Grid>
+
+                    <Grid item md={5}>
+                      <Typography
+                        style={{
+                          fontSize: "10px",
+                          color: "white",
+                          paddingBottom: "15px",
+                        }}
+                      >
+                        {" "}
+                        Payback CardNumber
+                      </Typography>
+                      <TextField
+                        id="outlined-basic"
+                        label=""
+                        placeholder=""
+                        variant="outlined"
+                        style={{ width: "100%" }}
+                        margin="dense"
+                      />
+                    </Grid>
+                    <Grid item md={1}>
+                      <Typography
+                        style={{
+                          fontSize: "10px",
+                          color: "white",
+                          paddingBottom: "17px",
+                        }}
+                      >
+                        {" "}
+                        Pay
+                      </Typography>
+                      <Button
+                        variant="contained"
+                        color="rgb(149,149,149)"
+                        className={classes.button100}
+                        style={{ height: "44px", color: "white" }}
+                      >
+                        Go
+                      </Button>
+                      <Popover
+                        className={classes.popper100}
+                        open={open5}
+                        onClose={handleClose1}
+                      >
+                        <Typography
+                          className={classes.typography}
+                          style={{
+                            width: "",
+                            height: "",
+                            padding: "20px",
+                            fontsize: "13px",
+                          }}
+                        >
+                          Login with phone number linked with MGM
+                          &nbsp;&nbsp;&nbsp;
+                          <Button
+                            aria-describedby={id}
+                            variant="contained"
+                            color="primary"
+                            onClick={handleClick}
+                            style={{ width: "90px", height: "45px" }}
+                          >
+                            Login
+                          </Button>
+                        </Typography>
+                      </Popover>
+                    </Grid>
+                  </Grid>
+                  <Grid item container justify="center">
+                    <Grid>
+                      <Typography style={{ fontSize: "10px" }}>
+                        {" "}
+                        Total points available for radeem xxxx
+                      </Typography>
+                    </Grid>
+                  </Grid>
+                </Paper>
+              </Grid>
+            </Grid>
+          </Paper>
         </Grid>
-     
-      <Grid item container>
-          <Grid itms md={3} >
-          <Typography  style={{marginTop:"25px",fontSize:"15px",}}>
-          What Is Payback?
-      </Typography>
+        <div style={{ padding: "5px" }}>
+          <Grid item container>
+            <Grid itms md={3}>
+              <Typography style={{ marginTop: "25px", fontSize: "15px" }}>
+                What Is Payback?
+              </Typography>
+            </Grid>
           </Grid>
-          
-        </Grid>
-        <Grid item container>
-         <Grid >
-          <Typography  color="textSecondary" component="p"style={{marginTop:"25px",fontSize:"15px"}}>
-          PAYBACK is India’s largest multi-brand loyalty program with 100+ 
-            online and offline partners and a member base of over 100 million. You earn PAYBACK Points from 
-            your day-to-day activities and then redeem them for 
-            exciting rewards and maximize on your daily spends
+          <Grid item container>
+            <Grid>
+              <Typography
+                color="textSecondary"
+                component="p"
+                style={{ marginTop: "25px", fontSize: "15px" }}
+              >
+                PAYBACK is India’s largest multi-brand loyalty program with 100+
+                online and offline partners and a member base of over 100
+                million. You earn PAYBACK Points from your day-to-day activities
+                and then redeem them for exciting rewards and maximize on your
+                daily spends
+              </Typography>
+            </Grid>
+          </Grid>
+          <Grid item container>
+            <Grid itms md={3}>
+              <Typography style={{ marginTop: "25px", fontSize: "15px" }}>
+                Earn PAYBACK Points Through MobiKwik
+              </Typography>
+            </Grid>
+          </Grid>
+          <Grid item container>
+            <Grid>
+              <Typography
+                color="textSecondary"
+                component="p"
+                style={{ marginTop: "25px", fontSize: "15px" }}
+              >
+                Buy apparels or groceries, fuel your vehicle, book flights and
+                hotels or simply shop online earn PAYBACK points or everything
+                you do. Make seamless payments through MobiKwik across multiple
+                partner platforms and earn points on each and every transaction.
+              </Typography>
+            </Grid>
+          </Grid>
+          <Grid item container>
+            <Grid itms md={6}>
+              <Typography style={{ marginTop: "25px", fontSize: "15px" }}>
+                Redeem PAYBACK Points On MobiKwik
+              </Typography>
+            </Grid>
+          </Grid>
+          <Grid item container>
+            <Grid>
+              <Typography
+                color="textSecondary"
+                component="p"
+                style={{ marginTop: "25px", fontSize: "15px" }}
+              >
+                The points that you earn can be redeemed for various purposes
+                like shopping, mobile recharges, etc. MobiKwik is he only place
+                where you can convert your PAYBACK points into cash. Redeem your
+                PAYBACK points on MobiKwik to earn wallet balance and use it to
+                recharge your mobile, pay your bills and much more! You get Re.
+                1 for every 4 Payback points.
+              </Typography>
+            </Grid>
+          </Grid>
+          <Grid item container>
+            <Grid itms md={6}>
+              <Typography style={{ marginTop: "25px", fontSize: "15px" }}>
+                How To Redeem Payback Points At MobiKwik App?
+              </Typography>
+            </Grid>
+          </Grid>
+          <Grid item container>
+            <Grid>
+              <Typography
+                color="textSecondary"
+                component="p"
+                style={{
+                  marginTop: "25px",
+                  fontSize: "15px",
+                  marginBottom: "50px",
+                }}
+              >
+                Redeeming PAYBACK points on MobiKwik is as simple as the click
+                of a button!
+                <br />
+                Follow the following steps to convert upto 400 points into cash
+                in a calendar month:
+              </Typography>
+            </Grid>
+          </Grid>
+        </div>
+        <Grid
+          item
+          container
+          className={classes.paper2}
+          spacing={2}
+          justify="center"
+        >
+          <Grid md={4} style={{ textAlign: "center" }}>
+            <Typography varient="h6">Step1</Typography>
+            <img
+              src={mutualfund247}
+              style={{ height: "400px", marginLeft: "35px" }}
+            />
+            <br />
+            <Typography style={{ fontSize: "10px" }}>
+              Visit ‘Wallet’ on the MobiKwik App
+            </Typography>
+          </Grid>
+          <Grid md={4} style={{ textAlign: "center" }}>
+            <Typography varient="h6">Step2</Typography>
+            <img src={mutualfund248} style={{ height: "400px" }} />
+            <Typography style={{ fontSize: "10px" }}>
+              Find Payback in the Points to Redeem Section
+            </Typography>
+          </Grid>
+          <Grid md={4} style={{ textAlign: "center" }}>
+            <Typography varient="h6">Step3</Typography>
+            <img src={mutualfund249} style={{ height: "400px" }} />
+            <Typography style={{ fontSize: "10px" }}>
+              Select your PAYBACK card, enter the required amount and voila!
             </Typography>
           </Grid>
         </Grid>
-        <Grid item container>
-          <Grid itms md={3} >
-          <Typography  style={{marginTop:"25px",fontSize:"15px",}}>
-          Earn PAYBACK Points Through MobiKwik
-      </Typography>
-          </Grid>
-          
-        </Grid>
-        <Grid item container>
-         <Grid >
-          <Typography  color="textSecondary" component="p"style={{marginTop:"25px",fontSize:"15px"}}>
-          Buy apparels or groceries, fuel your vehicle, book flights and hotels or simply shop online earn PAYBACK points 
-          or everything you do. Make seamless payments through MobiKwik across multiple partner platforms and 
-          earn points on each and every transaction.
-            </Typography>
-          </Grid>
-        </Grid>
-        <Grid item container>
-          <Grid itms md={6} >
-          <Typography  style={{marginTop:"25px",fontSize:"15px",}}>
-          Redeem PAYBACK Points On MobiKwik
-      </Typography>
-          </Grid>
-          
-        </Grid>
-        <Grid item container>
-         <Grid >
-          <Typography  color="textSecondary" component="p"style={{marginTop:"25px",fontSize:"15px"}}>
-          The points that you earn can be redeemed for various purposes like shopping, mobile recharges, etc. MobiKwik is
-          he only place where you can convert your PAYBACK points into cash. Redeem your PAYBACK points on MobiKwik to 
-          earn wallet balance and use it to recharge your mobile, pay your bills and much more! You get Re. 1 for every
-           4
-           Payback points.
-            </Typography>
-          </Grid>
-        </Grid>
-        <Grid item container>
-          <Grid itms md={6} >
-          <Typography  style={{marginTop:"25px",fontSize:"15px",}}>
-          How To Redeem Payback Points At MobiKwik App?
-      </Typography>
-          </Grid>
-          
-        </Grid>
-        <Grid item container>
-         <Grid >
-          <Typography  color="textSecondary" component="p"style={{marginTop:"25px",fontSize:"15px",marginBottom:"50px"}}>
-          Redeeming PAYBACK points on MobiKwik is as simple as the click of a button!
-            <br/>
-Follow the following steps to convert upto 400 points into cash in a calendar month:
-            </Typography>
-          </Grid>
-        </Grid>
-        <Grid item container  className={classes.paper2}spacing={2} styel={{justifyContent:"cneter",alignItems:"center",}}>
-     <Grid md={4} style={{textAlign:"center"}}>
-       <Typography varient="h6" >Step1</Typography>
-     <img src={mutualfund247} style={{height:"400px"}}/>
-     <br/>
-     <Typography style={{fontSize:"10px"}} >
-     Visit ‘Wallet’ on the MobiKwik App
-     </Typography>
-     
-     </Grid>
-     <Grid  md={4} style={{textAlign:"center"}}>
-     <Typography varient="h6">Step2</Typography>
-     <img src={mutualfund248} style={{height:"400px"}}/>
-     <Typography style={{fontSize:"10px"}} >
-     Find Payback in the Points to Redeem Section
-     </Typography>
-     </Grid>
-     <Grid  md={4} style={{textAlign:"center"}}>
-     <Typography varient="h6">Step3</Typography>
-     <img src={mutualfund249} style={{height:"400px"}}/>
-     <Typography style={{fontSize:"10px"}}>
-     Select your PAYBACK card, enter the required amount and voila!
-     </Typography>
-     </Grid>
-     </Grid>
-     
-    
+      </div>
+      <div style={{ marginTop: "2em" }}>
+        <Footer />
+      </div>
     </div>
   );
 }

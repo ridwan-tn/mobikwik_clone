@@ -485,12 +485,13 @@ export default function ReachargeResponsive() {
                       placeholder="Mobile Number "
                       variant="outlined"
                       margin="dense"
-                      type="number"
+                      type="text"
                       onInput={(e) => {
                         e.target.value = Math.max(0, parseInt(e.target.value))
                           .toString()
                           .slice(0, 10);
                       }}
+                      pattern="[0-9]*"
                       onChange={(e) => {
                         if (e.target.value.toString().length == 10) {
                           setNum(e.target.value);

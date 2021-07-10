@@ -151,6 +151,8 @@ paper2:{
   [theme.breakpoints.down("sm")]:{
     marginTop:"5px",
   marginBottom:"5px",
+  justifyItems:"center",
+  justifyContent:"center",
     },
     [theme.breakpoints.down("xs")]:{
       marginTop:"5px",
@@ -231,13 +233,20 @@ textcaption:{
  fontSize:10,
  padding:10,
 },
-
+button100:{
+  width:'100%',
+  [theme.breakpoints.down("sm")]:{
+    width:"200px"
+  }
+}
 
 }));
 export default function Transfer() {
   const classes = useStyles();
 
   return (
+    <div>
+    
     <div className={classes.content}>
       {/*<h1 className={styles.h1}>Transfer</h1>
       <h1 className={styles.h1}>Transfer</h1> */}
@@ -258,9 +267,9 @@ export default function Transfer() {
   </Grid>*/}
   <br/>
   <Grid item conatiner>
-  <Paper style={{alignItems:"center"}}className={classes.tabpanel1}>
+  <Paper style={{alignItems:"center",justifyContent:"center",justifyItems:"center"}}className={classes.tabpanel1}>
   
-  <Grid item container style={{textAlign:"left"}} spacing={2}>
+  <Grid item container style={{textAlign:"left",alignItems:"center",justifyItems:"center",alignContent:'center',justifyContent:"center"}} spacing={2}>
     <Grid item md={3}>
       <Typography className={classes.textcaption}>Beneficiary Name</Typography>
     
@@ -286,10 +295,10 @@ export default function Transfer() {
       
       <Button
         variant="contained"
-      
+      className={classes.button100}
         color="rgb(149,149,149)"
-        className={classes.button}
-         style={{width:"75px",height:'44px',color:"white",marginTop:"15px"}}
+       
+         style={{height:'44px',color:"white",marginTop:"15px"}}
       >
         Go
       </Button>
@@ -354,10 +363,10 @@ However, KYC process on MobiKwik is rather simple and quick and can be done with
 
    
    </Grid>
-   <Grid item container  className={classes.paper2}spacing={2} styel={{justifyContent:"cneter",alignItems:"center"}}>
+   <Grid item container  className={classes.paper2}spacing={2} styel={{justifyContent:"cneter",alignItems:"center",justifyItems:'center',alignContent:"center"}}>
      <Grid md={4} style={{textAlign:"center"}}>
        <Typography varient="h6" >Step1</Typography>
-     <img src={mutualfund244} style={{height:"400px"}}/>
+     <img src={mutualfund244} style={{height:"400px",marginLeft:"25px"}}/>
      <br/>
      <Typography style={{fontSize:"10px"}} >
      Tap on 'Transer Money' on the MobiKwik App
@@ -617,6 +626,10 @@ However, KYC process on MobiKwik is rather simple and quick and can be done with
     
    </Grid>
   
+      </div>
+      <div style={{ marginTop: "2em" }}>
+        <Footer />
+      </div>
     </div>
   );
 }

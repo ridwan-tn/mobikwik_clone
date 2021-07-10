@@ -1,6 +1,8 @@
 import React, { Component, useState } from "react";
+
 import PropTypes from "prop-types";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
+import AppBar from "@material-ui/core/AppBar";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Grid from "@material-ui/core/Grid";
@@ -49,8 +51,9 @@ function a11yProps(index) {
 const useStyles = makeStyles((theme) => ({
   content: {
     display: "block",
-    marginLeft: "16em",
-    marginTop: "-2em",
+    marginLeft: "20em",
+    marginTop: "2em",
+    marginRight: "10em",
     [theme.breakpoints.down("xs")]: {
       marginLeft: "1em",
       marginRight: "1em",
@@ -173,6 +176,12 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
     height: "",
   },
+  button100: {
+    width: "100%",
+    [theme.breakpoints.down("sm")]: {
+      width: "200px",
+    },
+  },
 }));
 const AntTabs = withStyles({
   root: {
@@ -219,6 +228,7 @@ export default function Wallet() {
   const classes = useStyles();
 
   return (
+    <div>
     <div className={classes.content}>
       <Grid container>
         <Grid item container>
@@ -303,9 +313,11 @@ export default function Wallet() {
               index={0}
             >
               {/*MOBILE*/}
-              <Grid item container spacing={2}>
+              <Grid item container spacing={2} justify="center">
                 <Grid item md={5} style={{ textAlign: "left" }}>
-                  <Typography style={{ fontSize: "10px", padding: 10 }}>
+                  <Typography
+                    style={{ fontSize: "10px", paddingBottom: "10px" }}
+                  >
                     {" "}
                     Mobile Number
                   </Typography>
@@ -316,10 +328,11 @@ export default function Wallet() {
                     style={{ width: "100%" }}
                     margin="dense"
                   />
-                  &nbsp;&nbsp;
                 </Grid>
                 <Grid item md={5} style={{ textAlign: "left" }}>
-                  <Typography style={{ fontSize: "10px", padding: 10 }}>
+                  <Typography
+                    style={{ fontSize: "10px", paddingBottom: "10px" }}
+                  >
                     Amount
                   </Typography>
                   <TextField
@@ -333,20 +346,19 @@ export default function Wallet() {
 
                 <Grid item md={1}>
                   <Typography
-                    style={{ fontSize: "10px", color: "white", padding: 10 }}
+                    style={{
+                      fontSize: "10px",
+                      color: "white",
+                      paddingBottom: "10px",
+                    }}
                   >
                     Amount
                   </Typography>
                   <Button
                     variant="contained"
                     color="rgb(149,149,149)"
-                    className={classes.button}
-                    style={{
-                      width: "75px",
-                      height: "44px",
-                      color: "white",
-                      marginTop: "5px",
-                    }}
+                    className={classes.button100}
+                    style={{ height: "44px", color: "white" }}
                   >
                     Go
                   </Button>
@@ -356,9 +368,9 @@ export default function Wallet() {
             <TabPanel value={value} className={classes.tabpanel1} index={1}>
               {/*MOBILE*/}
               <Grid item container>
-                <Grid item container justify="center" spacing={1}>
+                <Grid item container justify="center" spacing={2}>
                   <Grid item md={3} style={{ textAlign: "left" }}>
-                    <Typography style={{ fontSize: "10px", padding: 10 }}>
+                    <Typography style={{ fontSize: "10px", paddingBottom: 10 }}>
                       Beneficiary Name
                     </Typography>
 
@@ -370,7 +382,7 @@ export default function Wallet() {
                     />
                   </Grid>
                   <Grid item md={3} style={{ textAlign: "left" }}>
-                    <Typography style={{ fontSize: "10px", padding: 10 }}>
+                    <Typography style={{ fontSize: "10px", paddingBottom: 10 }}>
                       {" "}
                       Account Number
                     </Typography>
@@ -383,7 +395,7 @@ export default function Wallet() {
                     />
                   </Grid>
                   <Grid item md={2} style={{ textAlign: "left" }}>
-                    <Typography style={{ fontSize: "10px", padding: 10 }}>
+                    <Typography style={{ fontSize: "10px", paddingBottom: 10 }}>
                       IFSC Code
                     </Typography>
 
@@ -395,7 +407,7 @@ export default function Wallet() {
                     />
                   </Grid>
                   <Grid item md={3} style={{ textAlign: "left" }}>
-                    <Typography style={{ fontSize: "10px", padding: 10 }}>
+                    <Typography style={{ fontSize: "10px", paddingBottom: 10 }}>
                       Amount
                     </Typography>
 
@@ -407,14 +419,20 @@ export default function Wallet() {
                     />
                   </Grid>
                   <Grid item md={1}>
-                    <Typography style={{ color: "white", fontSize: "25px" }}>
+                    <Typography
+                      style={{
+                        color: "white",
+                        fontSize: "10px",
+                        paddingBottom: 10,
+                      }}
+                    >
                       Sonet
                     </Typography>
                     <Button
                       variant="contained"
                       color="rgb(149,149,149)"
-                      className={classes.button}
-                      style={{ width: "75px", height: "44px", color: "white" }}
+                      className={classes.button100}
+                      style={{ height: "44px", color: "white" }}
                     >
                       Go
                     </Button>
@@ -427,9 +445,11 @@ export default function Wallet() {
         <br />
         <br />
       </Grid>
-      <div style={{marginLeft:"-13rem"}}>
-      <Footer />
-     </div>
-    </div>
+      </div>
+<div style={{ marginTop: "2em" }}>
+        <Footer />
+      </div>
+      
+      </div>
   );
 }
