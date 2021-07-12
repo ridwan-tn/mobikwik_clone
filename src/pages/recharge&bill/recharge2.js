@@ -10,9 +10,6 @@ import Divider from "@material-ui/core/Divider";
 
 import { useStyles1 } from "./rechargestyles2";
 import Footer from "../../Components/Footermain/Footer"
-
-
-
 import React,{ Component, useState } from "react";
 import PropTypes from 'prop-types';
 import FormControl from '@material-ui/core/FormControl';
@@ -220,8 +217,13 @@ const[amount,setAmount]=useState('');
   const userType = '1';
   const classes = useStyles1();
   
+  const [number, setNumber] = useState();
 
-  
+
+  const handleChanges = (e) => {
+    const value = e.target.value.replace(/\D/g, "");
+    setNumber(value);
+  };
 
   
   return (
@@ -470,8 +472,9 @@ const[amount,setAmount]=useState('');
           </Grid>
     
     <Grid item md={3} xs={1}>
-      <TextField id="outlined-basic" style={{ width:"100%" }}placeholder="  ₹  Amount" variant="outlined"  margin="dense" type="number"
-      onChange={(event)=>setAmount(event.target.value)}/>
+      <TextField id="outlined-basic" style={{ width:"100%" }}placeholder="  ₹  Amount" variant="outlined"  margin="dense" 
+                               value={number} onChange={handleChanges} inputProps={{ maxLength: 3 }}
+                               />
       </Grid>
 
       <Grid item md={1} xs={1}>
